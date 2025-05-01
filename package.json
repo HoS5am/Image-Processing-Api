@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon dist/server.js",
+    "start": "nodemon src/server.ts",
     "build": "npx tsc",
     "prettier": "prettier --config .prettierrc \"src/**/*.ts\" --write",
     "lint": "eslint .",
@@ -20,17 +20,20 @@
     "@types/express": "^5.0.1",
     "@types/jasmine": "^5.1.7",
     "@types/node": "^22.15.3",
+    "@types/supertest": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
     "eslint": "^9.15.1",
     "nodemon": "^3.1.10",
     "prettier": "^3.5.3",
+    "supertest": "^7.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
   "dependencies": {
     "express": "^5.1.0",
     "jasmine": "^5.7.0",
-    "jasmine-spec-reporter": "^7.0.0"
+    "jasmine-spec-reporter": "^7.0.0",
+    "sharp": "^0.34.1"
   }
 }
