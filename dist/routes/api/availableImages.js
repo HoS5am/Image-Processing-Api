@@ -13,18 +13,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const exist_1 = __importDefault(require("../../utilities/exist"));
+const fs_1 = require("fs");
 const path_1 = __importDefault(require("path"));
-const viewImage = express_1.default.Router();
-viewImage.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const fileParam = req.query.filename;
-    const filePath = path_1.default.resolve(__dirname, `../../../images/original/${fileParam}`);
-    if (!(0, exist_1.default)(filePath)) {
-        res
-            .status(400)
-            .send('Image does not exist in folder, Please try inputting an image name that exists');
-        return;
+const fileExtension_1 = __importDefault(require("../../utilities/fileExtension"));
+const images = express_1.default.Router();
+const filePath = path_1.default.resolve(__dirname, `../../../images/original`);
+images.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const files = yield fs_1.promises.readdir(filePath);
+        const imageFiles = files.filter((file) => {
+            const ext = (0, fileExtension_1.default)(file);
+            return (typeof ext === 'string' && ['jpg', 'jpeg'].includes(ext.toLowerCase()));
+        });
+        res.status(200).json(imageFiles);
     }
-    res.status(200).sendFile(filePath);
+    catch (err) {
+        res.status(500).send(`Cannot read from directory ${err}`);
+    }
 }));
-exports.default = viewImage;
+exports.default = images;

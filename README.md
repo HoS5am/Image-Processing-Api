@@ -1,9 +1,11 @@
 # Image Processing API
-## A Web Application that allows users to preview and resize images instantly. it contains an API that resizes images by specifying their width and height via URL parameters.
+## A Web Application that allows users to preview and resize images instantly, upload their own images and add it to the gallery, and also have the ability to resize them. it contains an API that resizes images by specifying their width and height via URL parameters, and another that uploads images.
 
 ### Features
 
 - Image Selection: Choose an existing image from a list of available images.
+
+- Image Uploading: Upload an image from local machine to the webpage.
 
 - Image Resizing: Specify width and height to resize the image dynamically.
 
@@ -24,7 +26,7 @@
     - File System (fs)
     - Sharp
     - Jasmine
-
+    - Multer
 
 ### Installation Guide
 
@@ -64,6 +66,8 @@ Run the Server
 
 4. Preview and Copy Link: Once the image is resized, it will appear below the form. You can copy the URL of the resized image using the "Copy Link" button.
 
+5. Upload an image: Press "upload image" , and it will be added to the list of thumbnails.
+
 ### Endpoints
 
 1. > /availableImages
@@ -98,3 +102,16 @@ Run the Server
     - **Response**: Resized image URL.
 
     - e.g. http://localhost:3000/images?filename=starrynight.jpg&width=600&height=600
+
+4. > /upload
+
+    - **Method**: POST
+
+    - **Description**: Uploads an image to the server. The uploaded image will be saved to the /images/original folder. Only JPEG (.jpg, .jpeg) files are accepted.
+
+    - **Response**: 
+        - Status 200: Image uploaded successfully. The response will include a success message and the filename of the uploaded image.
+
+        - Status 400: If no file is uploaded, a validation error will be returned indicating "No file uploaded."
+
+        - Status 500: If the uploaded file is not a valid image file (e.g., not .jpg or .jpeg), the request will fail with an error.

@@ -1,3 +1,5 @@
+
+/* Defining color variables to be used again.*/
 :root {
   --primary: #19dcea;
   --primary-hover: #10b5c1;
@@ -177,6 +179,17 @@ form button:hover {
   background-color: var(--primary-hover);
 }
 
+#upload-form {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#imageUpload {
+  margin-bottom: 1rem;
+}
 
 #image-container {
   margin-top: 1rem;

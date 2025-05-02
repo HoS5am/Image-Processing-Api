@@ -21,10 +21,7 @@ const resizeImg = (width, height, inputPath, name) => __awaiter(void 0, void 0, 
     try {
         const editedPath = path_1.default.resolve(__dirname, `../../images/edited/`);
         const fileName = (0, fileName_1.default)(name);
-        const newFileName = fileName +
-            `-${width}-` +
-            `${height}.` +
-            `${(0, fileExtension_1.default)(name)}`;
+        const newFileName = fileName + `-${width}-` + `${height}.` + `${(0, fileExtension_1.default)(name)}`;
         const outPath = path_1.default.join(editedPath, newFileName);
         const ImgSharpBuffer = yield (0, sharp_1.default)(inputPath)
             .resize(width, height)

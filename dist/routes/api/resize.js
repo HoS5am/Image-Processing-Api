@@ -25,17 +25,23 @@ imgResize.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const fileParam = req.query.filename;
     const heightParam = parseInt(req.query.height, 10);
     if (!heightParam || !widthParam || !fileParam) {
-        res.status(400).send('Error!please check that your width,height are numbers and filename is a valid string');
+        res
+            .status(400)
+            .send('Please check that your width and height parameters are numbers ,and filename is a valid string');
         return;
     }
     if (widthParam <= 0 || heightParam <= 0) {
-        res.status(400).send('Error!please check that your width and height parameters are positive and are numbers');
+        res
+            .status(400)
+            .send('Please check that your width and height parameters are positive numbers');
         return;
     }
     const fullDir = path_1.default.resolve(__dirname, `../../../images/original/${fileParam}`);
     const editedDir = path_1.default.resolve(__dirname, `../../../images/edited`);
     if (!(0, exist_1.default)(fullDir)) {
-        res.status(400).send('Error!, image does not exist in folder, Please try inputting an image name that exists');
+        res
+            .status(400)
+            .send('Image could not be found, Please try inputting an image name that exists');
         return;
     }
     try {
@@ -50,7 +56,7 @@ imgResize.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     if (!(0, exist_1.default)(editedPath)) {
         const imageResized = yield (0, sharp_1.default)(widthParam, heightParam, fullDir, fileParam);
         if (!imageResized) {
-            res.status(400).send('Error! cannot display the resized image');
+            res.status(400).send('An error occurred while resizing the image.');
         }
     }
     res.status(200).sendFile(editedPath);

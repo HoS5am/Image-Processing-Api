@@ -7,6 +7,8 @@ const imageDir = path.resolve(
 );
 
 describe('suite for testing sharp module', () => {
+
+  // Test Case: Verifies that the image is successfully resized and returns true
   it('expects true if image is correctly resized and all details are provided', async () => {
     const imagResize: boolean = await resizeImg(
       300,
@@ -14,9 +16,10 @@ describe('suite for testing sharp module', () => {
       imageDir,
       'starrynight.jpg',
     );
-    expect(imagResize).toEqual(true);
+    expect(imagResize).toEqual(true); // Expecting 'true' for successful resizing
   });
 
+  // Test Case: Verifies that resizing an image incorrectly (e.g., wrong path) returns false
   it('expects false if image is not correctly resized', async () => {
     const imageDir = path.resolve(
       __dirname,
@@ -27,8 +30,8 @@ describe('suite for testing sharp module', () => {
       300,
       300,
       imageDir,
-      'fjord.jpg',
+      'supra.jpg',
     );
-    expect(imagResize).toEqual(false);
+    expect(imagResize).toEqual(false); // Expecting 'false' for failure in resizing
   });
 });
