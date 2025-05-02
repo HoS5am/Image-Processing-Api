@@ -11,7 +11,6 @@ const filePath = path.resolve(__dirname, `../../../images/original`);
 
 images.get('/', async (req: Request, res: Response): Promise<void> => {
   try {
-
     // Read all filenames in the original images directory
     const files: string[] = await fsPromises.readdir(filePath);
 

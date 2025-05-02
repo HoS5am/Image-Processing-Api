@@ -20,7 +20,8 @@ imgResize.get('/', async (req: Request, res: Response): Promise<void> => {
   // Validate required parameters: filename, width, height
   if (!fileParam || isNaN(widthParam) || isNaN(heightParam)) {
     res.status(400).json({
-      error: 'Please ensure that width and height are valid numbers and filename is a valid string.',
+      error:
+        'Please ensure that width and height are valid numbers and filename is a valid string.',
     });
     return;
   }

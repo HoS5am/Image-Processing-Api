@@ -5,7 +5,6 @@ const request = supertest(app);
 
 // Test Suite: Testing Image Resize functionality at /api/images
 describe('suite for testing Image Resize Parameters /api/images', () => {
-    
   // Test Case: Ensures that the server responds with 400 status
   // when invalid parameters are provided, e.g., a non-numeric height/width
   it('expects 400 status if image parameters are not completely present e.g. no filename or height/width not a number', async (): Promise<void> => {

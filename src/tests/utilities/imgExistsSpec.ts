@@ -2,7 +2,6 @@ import imgExists from '../../utilities/exist';
 import path from 'path';
 
 describe('Image exists module suite tests', () => {
-
   // Test Case: Verifies that the image exists at the specified path and returns true
   it('expects true since starrynight.jpg from original directory exists', async (): Promise<void> => {
     const imageDir = path.resolve(

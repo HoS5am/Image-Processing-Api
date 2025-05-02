@@ -5,7 +5,6 @@ const request = supertest(app);
 
 // Test Suite: Testing image view functionality at /api/image
 describe('suite for testing ViewImage Page endpoint response /api/image', () => {
-  
   // Test Case: Check that the image can be viewed successfully if it exists
   it('expects 200 status if image from filename=starrynight.jpg is displayed', async (): Promise<void> => {
     const response = await request.get('/image?filename=starrynight.jpg');

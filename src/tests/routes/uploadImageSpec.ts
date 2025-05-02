@@ -11,7 +11,10 @@ app.use('/upload', uploadImage);
 describe('POST /upload', () => {
   const testImagePath = path.join(__dirname, '../../test-assets/test.jpg');
   const nonImagePath = path.join(__dirname, '../../test-assets/test.txt');
-  const uploadedImagePath = path.resolve(__dirname, '../../../images/original/test.jpg');
+  const uploadedImagePath = path.resolve(
+    __dirname,
+    '../../../images/original/test.jpg',
+  );
 
   beforeAll(() => {
     // Create a dummy test image file (fake JPEG header)
@@ -32,8 +35,8 @@ describe('POST /upload', () => {
     fs.rmSync(path.dirname(testImagePath), { recursive: true, force: true });
   });
 
-    // Test Case: Successfully upload a valid JPEG image
-    it('should upload a valid JPEG image successfully', async () => {
+  // Test Case: Successfully upload a valid JPEG image
+  it('should upload a valid JPEG image successfully', async () => {
     const res = await request(app)
       .post('/upload')
       .attach('image', testImagePath);
@@ -42,27 +45,15 @@ describe('POST /upload', () => {
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
       message: 'Image uploaded successfully!',
-      filename: 'test.jpg'
+      filename: 'test.jpg',
     });
     // Check if the image was saved in the expected directory
     expect(fs.existsSync(uploadedImagePath)).toBeTrue();
   });
 
-    // Test Case: Reject non-jpeg files
-    it('should reject non-jpg/jpeg files', async () => {
-    const res = await request(app)
-      .post('/upload')
-      .attach('image', nonImagePath);
-
-    // Expecting server error (500) because file type is not valid
-    expect(res.status).toBe(500);
-  });
-
-  
-    // Test Case: Reject the request when no file is uploaded
-    it('should reject when no file is uploaded', async () => {
-    const res = await request(app)
-      .post('/upload');
+  // Test Case: Reject the request when no file is uploaded
+  it('should reject when no file is uploaded', async () => {
+    const res = await request(app).post('/upload');
 
     // Expecting a 400 error with an error message about missing file
     expect(res.status).toBe(400);

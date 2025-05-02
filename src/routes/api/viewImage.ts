@@ -10,7 +10,7 @@ viewImage.get('/', async (req: Request, res: Response): Promise<void> => {
   // Get filename from query
   const fileParam = req.query.filename as string;
 
-   // Construct the full path to the image file
+  // Construct the full path to the image file
   const filePath = path.resolve(
     __dirname,
     `../../../images/original/${fileParam}`,

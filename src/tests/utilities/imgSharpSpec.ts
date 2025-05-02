@@ -7,7 +7,6 @@ const imageDir = path.resolve(
 );
 
 describe('suite for testing sharp module', () => {
-
   // Test Case: Verifies that the image is successfully resized and returns true
   it('expects true if image is correctly resized and all details are provided', async () => {
     const imagResize: boolean = await resizeImg(
